@@ -1,2 +1,3 @@
 # iDine
-Application made from Paul Hudson video tutorial. https://www.hackingwithswift.com/
+Application made step by step from Paul Hudson video tutorial. 
+Learn more at: https://www.hackingwithswift.com/

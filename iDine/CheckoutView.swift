@@ -13,12 +13,14 @@ struct CheckoutView: View {
     
     static let paymentTypes = ["Cash", "Credit cards", "iDine Points"]
     static let tipAmounts = [10, 15, 20, 25, 0]
+    static let pickupTimes = ["Now", "Tonight", "Tomorrow morning"]
     
     @State private var paymentType = 0
     @State private var addLoyaltyDetails = false
     @State private var loyaltyNumber = ""
     @State private var tipAmount = 1
     @State private var showingPaymentAlert = false
+    @State private var pickupTime = 0
     
     var totalPrice: Double {
         let total = Double(order.total)
@@ -33,6 +35,12 @@ struct CheckoutView: View {
                     //$paymentType - two way binding, writes selected value
                     ForEach(0 ..< Self.paymentTypes.count) {
                         Text(Self.paymentTypes[$0])
+                    }
+                }
+                
+                Picker("Pickup time", selection: $pickupTime) {
+                    ForEach(0 ..< Self.pickupTimes.count) {
+                        Text(Self.pickupTimes[$0])
                     }
                 }
                 

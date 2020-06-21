@@ -18,6 +18,11 @@ struct AppView: View {
                     Image(systemName: "list.dash")
                     Text("Menu")
             }
+            FavouritesView()
+                .tabItem {
+                    Image(systemName: "heart")
+                    Text("Fav")
+            }
             OrderView()
                 .tabItem {
                     Image(systemName: "square.and.pencil")

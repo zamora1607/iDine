@@ -28,10 +28,30 @@ struct ItemDetails: View {
             
             Button("Order this") {
                 self.order.add(item: self.item)
-            }.font(.headline)
+            }
+            .font(.some(Font.callout))
+            .padding(5)
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .padding(5)
+            .border(Color.blue, width: 3)
+            
             
             Spacer()
         }.navigationBarTitle(Text(item.name), displayMode: .inline)
+        .navigationBarItems(trailing: favButton)
+    }
+    
+    var favButton: some View {
+        Button(action: {
+            print("action")
+        }) {
+            HStack {
+                Image(systemName: "heart")
+                .padding(2)
+                    .foregroundColor(.red)
+            }
+        }
     }
 }
 

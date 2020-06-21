@@ -9,7 +9,12 @@
 import SwiftUI
 
 struct ItemDetails: View {
+    
     @EnvironmentObject var order: Order
+    @EnvironmentObject var favourites: Favourites
+    
+    @State private var isFavourite = false
+    
     var item: MenuItem
     var body: some View {
         VStack {
@@ -44,12 +49,23 @@ struct ItemDetails: View {
     
     var favButton: some View {
         Button(action: {
-            print("action")
+            if self.favourites.items.contains(self.item) {
+                self.favourites.remove(item: self.item)
+            } else {
+                self.favourites.add(item: self.item)
+            }
+            self.isFavourite.toggle()
         }) {
             HStack {
-                Image(systemName: "heart")
-                .padding(2)
-                    .foregroundColor(.red)
+                if isFavourite {
+                    Image(systemName: "heart.fill")
+                        .padding(2)
+                        .foregroundColor(.red)
+                } else {
+                    Image(systemName: "heart")
+                      .padding(2)
+                      .foregroundColor(.red)
+                }
             }
         }
     }
@@ -57,9 +73,10 @@ struct ItemDetails: View {
 
 struct ItemDetails_Previews: PreviewProvider {
     static let order = Order()
+    static let favourites = Favourites()
     static var previews: some View {
         NavigationView {
-            ItemDetails(item: MenuItem.example).environmentObject(order)
+            ItemDetails(item: MenuItem.example).environmentObject(order).environmentObject(favourites)
         }
     }
 }

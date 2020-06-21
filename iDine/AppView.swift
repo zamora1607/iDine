@@ -10,6 +10,7 @@ import SwiftUI
 
 struct AppView: View {
     @EnvironmentObject var order: Order
+    @EnvironmentObject var favourites: Favourites
     
     var body: some View {
         TabView {
@@ -34,7 +35,9 @@ struct AppView: View {
 
 struct AppView_Previews: PreviewProvider {
     static let order = Order()
+    static let favourites = Favourites()
     static var previews: some View {
         AppView().environmentObject(order)
+            .environmentObject(favourites)
     }
 }
